@@ -10,6 +10,7 @@
 
 var toMarkdown
 var converters
+var voids
 var mdConverters = require('./lib/md-converters')
 var gfmConverters = require('./lib/gfm-converters')
 var HtmlParser = require('./lib/html-parser')
@@ -31,7 +32,7 @@ function isBlock (node) {
   return blocks.indexOf(node.nodeName.toLowerCase()) !== -1
 }
 
-var voids = [
+var defaultVoids = [
   'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
 ]
@@ -190,6 +191,7 @@ function process (node) {
 
 toMarkdown = function (input, options) {
   options = options || {}
+  voids = defaultVoids
 
   if (typeof input !== 'string') {
     throw new TypeError(input + ' is not a string')
@@ -213,6 +215,10 @@ toMarkdown = function (input, options) {
 
   if (options.converters) {
     converters = options.converters.concat(converters)
+  }
+
+  if (options.voids) {
+    voids = options.voids.concat(voids)
   }
 
   // Process through nodes in reverse (so deepest child elements are first).
