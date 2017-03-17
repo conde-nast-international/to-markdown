@@ -12,8 +12,6 @@ toMarkdown(stringOfHTML, options);
 
 ## Installation
 
-### Node.js
-
 Clone this repo, and create a package link:
 
 ```sh
@@ -21,7 +19,7 @@ $ git clone https://github.com/conde-nast-international/to-markdown.git
 $ cd to-markdown && npm link
 ```
 
-Inside the relevant repo, link to this package:
+Inside the relevant directory, link to this package:
 
 ```sh
 $ npm link to-markdown
