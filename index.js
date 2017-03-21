@@ -179,9 +179,7 @@ function process (node) {
       if (whitespace.leading || whitespace.trailing) {
         content = content.trim()
       }
-      replacement = whitespace.leading +
-        converter.replacement.call(toMarkdown, content, node) +
-        whitespace.trailing
+      replacement = converter.replacement.call(toMarkdown, content, node)
       break
     }
   }
