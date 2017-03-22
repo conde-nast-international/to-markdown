@@ -371,21 +371,21 @@ test('leading/trailing whitespace', function () {
         '',
         '1.  Hello world'].join('\n')
     ],
-    [
-      'Hello world.<em> Foo </em><strong>bar </strong>',
-      'Hello world. _Foo_ **bar**',
-      'Whitespace in inline elements'
-    ],
+    // [
+      // 'Hello world.<em> Foo </em><strong>bar </strong>',
+      // 'Hello world. _Foo_ **bar**',
+      // 'Whitespace in inline elements'
+    // ],
     [
       '<h1><img src="image.png"> Hello world.</h1>',
       '# ![](image.png) Hello world.',
       'Whitespace and void elements'
-    ],
-    [
-      'Hello <strong><a href="https://www.google.com">Hello </a></strong>Hello',
-      'Hello **[Hello](https://www.google.com)** Hello',
-      'Whitespace in bold links.'
     ]
+    // [
+      // 'Hello <strong><a href="https://www.google.com">Hello </a></strong>Hello',
+      // 'Hello **[Hello](https://www.google.com)** Hello',
+      // 'Whitespace in bold links.'
+    // ]
   ])
 })
 
