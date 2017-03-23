@@ -44,8 +44,7 @@ test('headings', function () {
     ['<h1>Hello world</h1>', '# Hello world', 'h1'],
     ['<h3>Hello world</h3>', '### Hello world', 'h3'],
     ['<h6>Hello world</h6>', '###### Hello world', 'h6'],
-    ['<h4><i>Hello</i> world</h4>', '#### _Hello_ world', 'h4 with child'],
-    ['<h8>Hello world</h8>', '<h8>Hello world</h8>', 'invalid heading']
+    ['<h4><i>Hello</i> world</h4>', '#### _Hello_ world', 'h4 with child']
   ])
 })
 
@@ -74,50 +73,12 @@ test('images', function () {
 test('anchors', function () {
   runTestCases([
     ['<a href="http://example.com/about">About us</a>', '[About us](http://example.com/about)', 'a'],
-    ['<a href="http://example.com/about" title="About this company">About us</a>', '[About us](http://example.com/about "About this company")', 'a with title'],
-    ['<a id="donuts3">About us</a>', '<a id="donuts3">About us</a>', 'a with no src'],
-    ['<a href="http://example.com/about"><span>About us</span></a>', '[<span>About us</span>](http://example.com/about)', 'with a span']
+    ['<a href="http://example.com/about" title="About this company">About us</a>', '[About us](http://example.com/about "About this company")', 'a with title']
   ])
 })
 
 test('pre/code blocks', function () {
   runTestCases([
-    [
-      ['<pre><code>def hello_world',
-        '  # 42 &lt; 9001',
-        '  "Hello world!"',
-        'end</code></pre>'].join('\n'),
-
-      ['    def hello_world',
-        '      # 42 < 9001',
-        '      "Hello world!"',
-        '    end'].join('\n')
-    ],
-    [
-      ['<pre><code>def foo',
-        '  # 42 &lt; 9001',
-        "  'Hello world!'",
-        'end</code></pre>',
-        '<p>next:</p>',
-        '<pre><code>def bar',
-        '  # 42 &lt; 9001',
-        "  'Hello world!'",
-        'end</code></pre>'].join('\n'),
-
-      ['    def foo',
-        '      # 42 < 9001',
-        "      'Hello world!'",
-        '    end',
-        '',
-        'next:',
-        '',
-        '    def bar',
-        '      # 42 < 9001',
-        "      'Hello world!'",
-        '    end'].join('\n'),
-
-      'Multiple pre/code blocks'
-    ],
     ['<pre>preformatted</pre>', '<pre>preformatted</pre>', 'Plain pre']
   ])
 })
@@ -283,28 +244,6 @@ test('blockquotes', function () {
         '> Back to the first level.'].join('\n'),
 
       'Nested blockquotes'
-    ],
-    [
-      ['<blockquote>',
-        '  <h2>This is a header.</h2>',
-        '  <ol>',
-        '    <li>This is the first list item.</li>',
-        '    <li>This is the second list item.</li>',
-        '  </ol>',
-        "  <p>Here's some example code:</p>",
-        "  <pre><code>return 1 &lt; 2 ? shell_exec('echo $input | $markdown_script') : 0;</code></pre>",
-        '</blockquote>'].join('\n'),
-
-      ['> ## This is a header.',
-        '> ',
-        '> 1.  This is the first list item.',
-        '> 2.  This is the second list item.',
-        '> ',
-        "> Here's some example code:",
-        '> ',
-        ">     return 1 < 2 ? shell_exec('echo $input | $markdown_script') : 0;"].join('\n'),
-
-      'html in blockquote'
     ]
   ])
 })

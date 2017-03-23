@@ -161,8 +161,10 @@ function process (node) {
   // Remove blank nodes
   if (!isVoid(node) && !/A|TH|TD/.test(node.nodeName) && /^\s*$/i.test(content)) {
     node._replacement = ''
-    return
+    return true
   }
+
+  var isSupported = false
 
   for (var i = 0; i < converters.length; i++) {
     var converter = converters[i]
@@ -180,15 +182,20 @@ function process (node) {
         content = content.trim()
       }
       replacement = converter.replacement.call(toMarkdown, content, node)
+      isSupported = true
       break
     }
   }
 
   node._replacement = replacement
+  return isSupported
 }
 
 toMarkdown = function (input, options) {
   options = options || {}
+  if (!options.onUnsupported) {
+    options.onUnsupported = function () { throw new Error('Unsupported tag') }
+  }
   voids = defaultVoids
 
   if (typeof input !== 'string') {
@@ -221,7 +228,10 @@ toMarkdown = function (input, options) {
 
   // Process through nodes in reverse (so deepest child elements are first).
   for (var i = nodes.length - 1; i >= 0; i--) {
-    process(nodes[i])
+    const isSupported = process(nodes[i])
+    if (!isSupported) {
+      options.onUnsupported(nodes[i])
+    }
   }
   output = getContent(clone)
 
