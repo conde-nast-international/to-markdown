@@ -230,7 +230,7 @@ toMarkdown = function (input, options) {
   for (var i = nodes.length - 1; i >= 0; i--) {
     const isSupported = process(nodes[i])
     if (!isSupported) {
-      options.onUnsupported(nodes[i])
+      options.onUnsupported(nodes[i], getContent(nodes[i]))
     }
   }
   output = getContent(clone)
