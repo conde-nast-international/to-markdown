@@ -1,5 +1,5 @@
 {
-  "name": "to-markdown",
+  "name": "@condenast/to-markdown",
   "description": "HTML-to-Markdown converter",
   "version": "3.0.4",
   "author": "Dom Christie",
