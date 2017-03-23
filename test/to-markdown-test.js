@@ -394,3 +394,11 @@ test('empty string', function () {
     ['', '']
   ])
 })
+
+test('throws an error on unsupported tag', function () {
+  throws(function () {
+    toMarkdown('<h8>foo</h8>')
+  },
+  'error thrown for h8'
+  )
+})
