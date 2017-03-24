@@ -1,7 +1,7 @@
 {
   "name": "@condenast/to-markdown",
   "description": "HTML-to-Markdown converter",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "author": "Dom Christie",
   "browser": {
     "jsdom": false

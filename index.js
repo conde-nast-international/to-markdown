@@ -135,8 +135,8 @@ function flankingWhitespace (node, content) {
   var trailing = ''
 
   if (!isBlock(node)) {
-    var hasLeading = /^[ \r\n\t]/.test(content)
-    var hasTrailing = /[ \r\n\t]$/.test(content)
+    var hasLeading = /^\s/.test(content)
+    var hasTrailing = /\s$/.test(content)
 
     if (hasLeading && !isFlankedByWhitespace('left', node)) {
       leading = ' '
